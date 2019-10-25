@@ -1,20 +1,25 @@
 <template>
-  <div>
-    <el-card class="box-card">
+  <div class="container">
+    <div>
       <div class="text item">
+          <h2 style="text-align: center;">卓越学院信息管理系统</h2>
           <el-form label-position="left" label-width="80px">
             <el-form-item label="用户名">
-              <el-input v-model="model.username"></el-input>
+              <el-col>
+                <el-input v-model="model.username" clearable></el-input>
+              </el-col>
             </el-form-item>
             <el-form-item label="密码">
-              <el-input v-model="model.password"></el-input>
+              <el-col>
+              <el-input v-model="model.password" show-password></el-input>
+              </el-col>
             </el-form-item>
              <el-form-item>
-                <el-button type="primary" @click="login">立即创建</el-button>
+                <el-button type="primary" @click="login">登陆</el-button>
               </el-form-item>
           </el-form>
       </div>
-    </el-card>
+    </div>
   </div>
 </template>
 
@@ -29,7 +34,17 @@
 
   .box-card {
     width: 30%;
-    margin: 20% auto;
+    margin: 0 auto;
+  }
+  .container {
+    margin: 15% auto;
+    border: 1px solid #aaaaaa;
+    width: 40%;
+    padding: 0 5rem;
+    border-radius: 2rem;
+  }
+  .html .body {
+    height: 100vh;
   }
 </style>
 

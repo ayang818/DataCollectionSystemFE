@@ -30,7 +30,6 @@ export default {
     },
     methods: {
         async save(){
-            let res;
             
         },
         async fetch() {

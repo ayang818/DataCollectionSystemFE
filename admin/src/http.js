@@ -2,7 +2,7 @@ import Vue from "vue"
 import router from "./router"
 
 var axios = require("axios");
-
+axios.defaults.withCredentials=true
 const http = axios.create({
     baseURL: "http://localhost:1080"
 })
@@ -30,4 +30,3 @@ http.interceptors.request.use(function (config) {
 })
 
 export default http
-// module.exports = {http}

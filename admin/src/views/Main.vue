@@ -56,8 +56,8 @@ export default {
   },
   methods: {
     async fetch() {
-      const res = await this.$http.get("/login");
-      this.$set(this.auth, "username", res.data.username);
+      const res = await this.$http.get("api/user");
+      this.$set(this.auth, "username", res.data.studentName);
     },
     quit() {
       localStorage.clear();
