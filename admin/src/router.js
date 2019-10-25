@@ -9,7 +9,7 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
-  base: '/admin/',
+  base: '/',
   routes: [
     {path: "/login", name: "home", component: Login, meta: {isPublic: true}},
     {
