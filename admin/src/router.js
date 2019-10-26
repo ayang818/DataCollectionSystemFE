@@ -20,7 +20,7 @@ const router = new Router({
     {
       path: '/',
       component: Main,
-      redirect: "/honor",
+      redirect: "/profile/approvallist",
       children: [
         {path: "/honor/competition", component: CompetitionEdit},
         {path: "/honor/paper", component: PaperEdit},
