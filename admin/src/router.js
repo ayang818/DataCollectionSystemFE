@@ -1,9 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Main from "./views/Main.vue"
-import Edit from "./views/CategoriesEdit"
-import List from "./views/CategoriesList"
 import Login from "./views/Login"
+import CompetitionEdit from "./views/CompetitionEdit"
+import PaperEdit from "./views/PaperEdit"
+import KnowledgeEdit from "./views/KnowledgeEdit"
+import AbilityEdit from "./views/AbilityEdit"
+import GraduationEdit from "./views/GraduationEdit"
+import ApprovalList from "./views/ApprovalList"
+import ProfileEdit from "./views/ProfileEdit"
 
 Vue.use(Router)
 
@@ -15,11 +20,16 @@ const router = new Router({
     {
       path: '/',
       component: Main,
-      redirect: "/categories/list",
+      redirect: "/honor",
       children: [
-        {path: "/categories/create", component: Edit},
-        {path: "/categories/list", component: List},
-        {path: "/categories/edit/:id", component: Edit, props: true}
+        {path: "/honor/competition", component: CompetitionEdit},
+        {path: "/honor/paper", component: PaperEdit},
+        {path: "/honor/knowledge", component: KnowledgeEdit},
+        {path: "/honor/abliity", component: AbilityEdit},
+        {path: "/honor/graduation", component: GraduationEdit},
+        {path: "/profile/edit", component: ProfileEdit},
+        {path: "/profile/approvallist", component: ApprovalList},
+        {path: "/profile/approvaledit", component: ApprovalList},
       ] 
     },    
   ]

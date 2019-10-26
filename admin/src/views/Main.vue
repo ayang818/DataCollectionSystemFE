@@ -2,14 +2,26 @@
   <el-container style="height: 100vh;">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu router unique-opened :default-active="$route.path">
-        <el-submenu index="1">
+        <el-submenu index="1" >
           <template slot="title">
-            <i class="el-icon-menu"></i>内容管理
+            <i class="el-icon-menu"></i>新增审批
           </template>
           <el-menu-item-group>
             <template slot="title">分类</template>
-            <el-menu-item index="/categories/list">分类列表</el-menu-item>
-            <el-menu-item index="/categories/create">新建分类</el-menu-item>
+            <el-menu-item index="/honor/competition">学科竞赛获奖</el-menu-item>
+            <el-menu-item index="/honor/paper">发表科研论文</el-menu-item>
+          <el-menu-item index="/honor/knowledge">申请知识产权</el-menu-item>
+          <el-menu-item index="/honor/ability">综合素质提升</el-menu-item>
+          <el-menu-item index="/honor/graduation">提交毕业去向</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="2" >
+          <template slot="title">
+            <i class="el-icon-menu"></i>我的信息
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/profile/edit">修改账号信息</el-menu-item>
+            <el-menu-item index="/profile/approvallist">我的审批</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

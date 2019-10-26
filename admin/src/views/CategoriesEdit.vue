@@ -12,7 +12,7 @@
                 <el-input v-model="model.name"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" native-type="submit">保存</el-button>
+                <el-button type="primary" native-type="submit">毕业去向</el-button>
             </el-form-item>
         </el-form>
     </div>
