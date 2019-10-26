@@ -37,7 +37,7 @@ export default {
             this.$router.push("/login")
             this.$message({
               type: "success",
-              message: "密码修改成功",
+              message: "密码修改成功,请重新登陆",
             })
         }
     },
