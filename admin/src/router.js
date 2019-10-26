@@ -25,7 +25,7 @@ const router = new Router({
         {path: "/honor/competition", component: CompetitionEdit},
         {path: "/honor/paper", component: PaperEdit},
         {path: "/honor/knowledge", component: KnowledgeEdit},
-        {path: "/honor/abliity", component: AbilityEdit},
+        {path: "/honor/ability", component: AbilityEdit},
         {path: "/honor/graduation", component: GraduationEdit},
         {path: "/profile/edit", component: ProfileEdit},
         {path: "/profile/approvallist", component: ApprovalList},
