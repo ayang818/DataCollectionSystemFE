@@ -1,22 +1,25 @@
 <template>
     <div class="about">
         <h2>发表论文审批</h2>
-        <el-form ref="form" :model="model" label-width="150px">
+        <el-form ref="form" :model="model" label-width="150px" @submit.native.prevent>
             <el-form-item label="论文题目">
                 <el-input v-model="model.paperTitle" placeholder="输入论文名称"></el-input>
             </el-form-item>
             <el-form-item label="论文等级">
-                <el-input v-model="model.competitionName" placeholder="输入论文等级"></el-input>
+                <el-input v-model="model.paperLevel" placeholder="输入论文等级"></el-input>
             </el-form-item>
             <el-form-item label="发表年份">
                 <el-date-picker
-                    v-model="model.publicYear"
+                    v-model="model.publishYear"
                     type="year"
                     placeholder="选择年">
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="所有作者姓名">
                 <el-input v-model="model.authorName" placeholder="输入所有作者姓名"></el-input>
+            </el-form-item>
+            <el-form-item label="所载刊物">
+                <el-input v-model="model.publicationName" placeholder="输入所载刊物名称"></el-input>
             </el-form-item>
             <el-form-item label="第几作者">
                 <el-select v-model="model.authorOrder" placeholder="请选择你是第几作者">
@@ -46,16 +49,29 @@ export default {
     data() {
         return {
             model: {},
-            author_order: ["一","二","三","四","五","六"]
+            author_order: ["1","2","3","4","5","6"]
         }
     },
     methods: {
-        async save(){
-            
-        },
-        async fetch() {
-            
-        },
+        async submit() {
+            this.$confirm('是否提交?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+            }).then(() => {
+            const res = this.$http.post("/api/honor/edit/paper", this.model);
+            this.$message({
+                type: 'success',
+                message: '提交成功!'
+            });
+            }).catch(() => {
+            this.$message({
+                type: 'info',
+                message: '已取消提交'
+            });          
+            });
+
+        }
     },
     
     created() {

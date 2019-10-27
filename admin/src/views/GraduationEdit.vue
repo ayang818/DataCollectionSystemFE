@@ -1,7 +1,7 @@
 <template>
     <div class="about">
         <h2>提交毕业去向</h2>
-        <el-form ref="form" :model="model" label-width="150px">
+        <el-form ref="form" :model="model" label-width="150px" @submit.native.prevent>
             <el-form-item label="去向类别">
                   <el-select v-model="model.goneType" placeholder="请选择">
                     <el-option

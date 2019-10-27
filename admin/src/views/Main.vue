@@ -2,7 +2,7 @@
   <el-container style="height: 100vh;">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu router unique-opened :default-active="$route.path">
-        <el-submenu index="1" >
+        <el-submenu index="1" v-if="auth.type == 1">
           <template slot="title">
             <i class="el-icon-menu"></i>新增审批
           </template>
@@ -21,7 +21,7 @@
           </template>
           <el-menu-item-group>
             <el-menu-item index="/profile/edit">修改账号信息</el-menu-item>
-            <el-menu-item index="/profile/approvallist">我的审批</el-menu-item>
+            <el-menu-item index="/profile/approvallist" v-if="auth.type == 1">我的审批</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3" v-if="auth.type == 2">
@@ -29,8 +29,8 @@
             <i class="el-icon-menu"></i>管理员目录
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/profile/edit">审核审批</el-menu-item>
-            <el-menu-item index="/profile/approvallist">导入</el-menu-item>
+            <el-menu-item index="/admin/approvallist">所有提交的审核</el-menu-item>
+            <el-menu-item index="">导入</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

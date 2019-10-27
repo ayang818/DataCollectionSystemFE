@@ -1,7 +1,7 @@
 <template>
     <div class="about">
         <h2>知识产权审批</h2>
-        <el-form ref="form" :model="model" label-width="150px">
+        <el-form ref="form" :model="model" label-width="150px" @submit.native.prevent>
             <el-form-item label="知识产权类型">
                 <el-radio v-model="model.honorType" :label="value" v-for="(value, index) in knowledge_type" :key="index">{{value}}</el-radio>
             </el-form-item>

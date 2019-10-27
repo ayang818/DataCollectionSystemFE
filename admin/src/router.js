@@ -9,6 +9,7 @@ import AbilityEdit from "./views/AbilityEdit"
 import GraduationEdit from "./views/GraduationEdit"
 import ApprovalList from "./views/ApprovalList"
 import ProfileEdit from "./views/ProfileEdit"
+import AdminApprovalList from "./views/AdminApprovalList"
 
 Vue.use(Router)
 
@@ -30,6 +31,7 @@ const router = new Router({
         {path: "/profile/edit", component: ProfileEdit},
         {path: "/profile/approvallist", component: ApprovalList},
         {path: "/profile/approvaledit", component: ApprovalList},
+        {path: "/admin/approvallist", component: AdminApprovalList}
       ] 
     },    
   ]
@@ -37,9 +39,9 @@ const router = new Router({
 
 router.beforeEach((to, from ,next) => {
   // 既没token 访问的又不是登陆页面
-  // if (!to.meta.isPublic) {
-  //   return next("/login");
-  // }
+  if (!to.meta.isPublic && !localStorage.token) {
+    return next("/login");
+  }
   next()
 })
 export default router
