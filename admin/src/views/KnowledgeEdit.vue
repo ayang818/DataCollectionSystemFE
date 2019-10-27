@@ -9,7 +9,7 @@
                 <el-input v-model="model.honorName" placeholder="知识产权名称"></el-input>
             </el-form-item>
             <el-form-item label="(软著/专利)登记号">
-                <el-input v-model="model.honorName" placeholder="如果属于软著/专利，输入登记号"></el-input>
+                <el-input v-model="model.registerNumber" placeholder="如果属于软著/专利，输入登记号"></el-input>
             </el-form-item>
             <el-form-item label="授权状态">
                 <el-radio v-model="model.authorizationStatus" label="已授权">已授权</el-radio>
@@ -37,16 +37,28 @@ export default {
         }
     },
     methods: {
-        async save(){
-            
-        },
-        async fetch() {
-            
-        },
+        async submit() {
+            this.$confirm('是否提交?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+            }).then(() => {
+            const res = this.$http.post("/api/honor/edit/knowledge", this.model);
+            this.$message({
+                type: 'success',
+                message: '提交成功!'
+            });
+            }).catch(() => {
+            this.$message({
+                type: 'info',
+                message: '已取消提交'
+            });          
+            });
+        }
     },
     
     created() {
-        this.id && this.fetch(this.id);
+
     }
 }
 </script>

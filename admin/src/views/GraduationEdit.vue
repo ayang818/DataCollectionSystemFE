@@ -34,12 +34,24 @@ export default {
         }
     },
     methods: {
-        async save(){
-            
-        },
-        async fetch() {
-            
-        },
+        async submit() {
+            this.$confirm('是否提交?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+            }).then(() => {
+            const res = this.$http.post("/api/honor/edit/graduation", this.model);
+            this.$message({
+                type: 'success',
+                message: '提交成功!'
+            });
+            }).catch(() => {
+            this.$message({
+                type: 'info',
+                message: '已取消提交'
+            });          
+            });
+        }
     },
     
     created() {
