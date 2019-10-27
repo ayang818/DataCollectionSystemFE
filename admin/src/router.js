@@ -10,6 +10,7 @@ import GraduationEdit from "./views/GraduationEdit"
 import ApprovalList from "./views/ApprovalList"
 import ProfileEdit from "./views/ProfileEdit"
 import AdminApprovalList from "./views/AdminApprovalList"
+import EditDict from "./views/EditDict"
 
 Vue.use(Router)
 
@@ -31,7 +32,8 @@ const router = new Router({
         {path: "/profile/edit", component: ProfileEdit},
         {path: "/profile/approvallist", component: ApprovalList},
         {path: "/profile/approvaledit", component: ApprovalList},
-        {path: "/admin/approvallist", component: AdminApprovalList}
+        {path: "/admin/approvallist", component: AdminApprovalList},
+        {path: "/admin/editdict", component: EditDict}
       ] 
     },    
   ]
