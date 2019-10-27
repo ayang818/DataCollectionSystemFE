@@ -40,7 +40,6 @@ export default {
         async fetchList() {
             const res = await this.$http.get("/api/honor/list");
             const data = res.data
-            console.log(data)
             for (let i = 0; i < data.length; i++) {
                 let entry = data[i]
                 if (entry.pass === 0) {

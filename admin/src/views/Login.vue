@@ -3,7 +3,7 @@
     <div>
       <div class="text item">
           <h2 style="text-align: center;">卓越学院信息管理系统</h2>
-          <el-form label-position="left" label-width="80px">
+          <el-form label-position="left" label-width="100px">
             <el-form-item label="用户名">
               <el-col>
                 <el-input v-model="model.username" clearable></el-input>
@@ -13,6 +13,10 @@
               <el-col>
               <el-input v-model="model.password" show-password></el-input>
               </el-col>
+            </el-form-item>
+             <el-form-item label="学生/管理员">
+              <el-radio v-model="model.type" label="1">学生</el-radio>
+              <el-radio v-model="model.type" label="2">管理员</el-radio>
             </el-form-item>
              <el-form-item>
                 <el-button type="primary" @click="login">登陆</el-button>
@@ -58,7 +62,12 @@ export default {
     methods: {
         async login() {
             // 得到token
-            const res =  await this.$http.post("/api/login", this.model);
+            let res = "";
+            if (this.model.type === "1" ) {
+              res =  await this.$http.post("/api/login/user", this.model);
+            } else if (this.model.type == "2") {
+              res = await this.$http.post("/api/login/admin", this.model);
+            }
             let code = String(res.data.code);
             if (code.startsWith("4")) {
                 this.$message({

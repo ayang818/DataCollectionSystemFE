@@ -24,12 +24,21 @@
             <el-menu-item index="/profile/approvallist">我的审批</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
+        <el-submenu index="3" v-if="auth.type == 2">
+          <template slot="title">
+            <i class="el-icon-menu"></i>管理员目录
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="/profile/edit">审核审批</el-menu-item>
+            <el-menu-item index="/profile/approvallist">导入</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
       </el-menu>
     </el-aside>
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <span>欢迎，{{auth.username}}</span>
+        <span>欢迎，{{auth.type == "1" ? auth.studentName : auth.username}}</span>
         <button class="btn" @click="quit()">退出登陆</button>
       </el-header>
       <el-main>
@@ -62,14 +71,16 @@ export default {
   data() {
     return {
       auth: {
-        username: ""
+        
       }
     };
   },
   methods: {
     async fetch() {
       const res = await this.$http.get("api/user");
-      this.$set(this.auth, "username", res.data.studentName);
+      // this.$set(this.auth, "username", res.data.studentName);
+      this.$set(this.auth, "type", res.data.type);
+      this.auth = res.data;
     },
     quit() {
       localStorage.clear();
