@@ -30,7 +30,7 @@
             :filters="[{text : '审核通过', value: '审核通过'},{text : '审核不通过', value: '审核不通过'},{text : '审核中', value: '审核中'}]"
             :filter-method="filterStatus"
             filter-placement="bottom-end">
-      </el-table-column>
+        </el-table-column>
       <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button

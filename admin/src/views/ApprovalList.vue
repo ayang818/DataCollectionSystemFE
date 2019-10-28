@@ -22,6 +22,13 @@
             prop="pass"
             label="审批状态">
       </el-table-column>
+      <el-table-column label="操作">
+      <template slot-scope="scope">
+        <el-button
+          size="mini"
+          @click="edit(scope.$index, scope.row)" v-if="scope.row.pass != '审核通过'">编辑</el-button>
+      </template>
+    </el-table-column>
     </el-table>
     </div>
 </template>
@@ -65,6 +72,20 @@ export default {
                 }
             }
             this.model = data;
+        },
+        edit(index, row) {
+            if (row.type === "学科竞赛获奖") {
+                this.$router.push("/honor/competition/edit/"+row.detailId);
+            }
+            else if (row.type === "发表科研论文") {
+                this.$router.push("/honor/paper/edit/"+row.detailId);
+            }
+            else if (row.type === "综合素质提升") {
+                this.$router.push("/honor/ability/edit/"+row.detailId);
+            }
+            else if (row.type === "申请知识产权") {
+                this.$router.push("/honor/knowledge/edit/"+row.detailId);
+            }
         }
     },
     created() {

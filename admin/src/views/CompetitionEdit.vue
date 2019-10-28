@@ -65,7 +65,11 @@ export default {
             cancelButtonText: '取消',
             type: 'warning'
             }).then(() => {
-            const res = this.$http.post("/api/honor/edit/competition", this.model);
+            if (this.id) {
+                const res = this.$http.post("/api/honor/edit/competition?id="+this.id, this.model);
+            } else {
+                const res = this.$http.post("/api/honor/edit/competition", this.model);
+            }
             this.$message({
                 type: 'success',
                 message: '提交成功!'

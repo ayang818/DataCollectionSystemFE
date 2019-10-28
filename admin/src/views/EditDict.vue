@@ -33,7 +33,6 @@
           @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>
       </template>
     </el-table-column>
-    {{model}}
     </el-table>
     </div>
 </template>
