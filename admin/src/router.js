@@ -11,6 +11,7 @@ import ApprovalList from "./views/ApprovalList"
 import ProfileEdit from "./views/ProfileEdit"
 import AdminApprovalList from "./views/AdminApprovalList"
 import EditDict from "./views/EditDict"
+import ImportExcel from "./views/ImportExcel"
 
 Vue.use(Router)
 
@@ -33,7 +34,8 @@ const router = new Router({
         {path: "/profile/approvallist", component: ApprovalList},
         {path: "/profile/approvaledit", component: ApprovalList},
         {path: "/admin/approvallist", component: AdminApprovalList},
-        {path: "/admin/editdict", component: EditDict}
+        {path: "/admin/editdict", component: EditDict},
+        {path: "/admin/importexcel", component: ImportExcel}
       ] 
     },    
   ]

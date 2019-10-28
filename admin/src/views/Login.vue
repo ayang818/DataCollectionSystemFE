@@ -69,7 +69,7 @@ export default {
               res = await this.$http.post("/api/login/admin", this.model);
             }
             let code = String(res.data.code);
-            if (code.startsWith("4")) {
+            if (code.startsWith("4") || code.startsWith("5")) {
                 this.$message({
                   type: "error",
                   message: res.data.message,

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>所有审批</h2>
+        <h2>编辑数据条目</h2>
         <el-table
         :data="model"
         style="width: 100%">

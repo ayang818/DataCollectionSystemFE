@@ -58,10 +58,10 @@ export default {
                     entry.type = "发表科研论文"
                 }
                 if (entry.type === 3) {
-                    entry.type = "综合素质提升"
+                    entry.type = "申请知识产权"
                 }
                 if (entry.type === 4) {
-                    entry.type = "发表科研论文"
+                    entry.type = "综合素质提升"
                 }
             }
             this.model = data;

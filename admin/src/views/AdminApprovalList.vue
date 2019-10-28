@@ -38,8 +38,8 @@
           @click="handleEdit(scope.$index, scope.row)">查看详情</el-button>
       </template>
     </el-table-column>
-    {{model}}
     </el-table>
+    {{model}}
     </div>
 </template>
 
@@ -89,6 +89,21 @@ export default {
         filterStatus(value, row) {
             return row.pass === value;
         },
+        handleEdit(index, row) {
+            console.log(row)
+            if (row.type === "学科竞赛获奖") {
+                this.$router.push();
+            }
+            else if (row.type === "发表科研论文") {
+                this.$router.push();
+            }
+            else if (row.type === "综合素质提升") {
+                this.$router.push();
+            }
+            else if (row.type === "申请知识产权") {
+                this.$router.push();
+            }
+        }
     },
     
     created() {
