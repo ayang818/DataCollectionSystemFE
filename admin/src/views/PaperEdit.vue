@@ -2,6 +2,18 @@
     <div class="about">
         <h2>发表论文审批</h2>
         <el-form ref="form" :model="model" label-width="150px" @submit.native.prevent>
+            <el-form-item label="提交人" v-if="this.auth.type == 2">
+                <el-input v-model="model.studentName"></el-input>
+            </el-form-item>
+            <el-form-item label="学号" v-if="this.auth.type == 2">
+                <el-input v-model="model.schoolNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="创建审批时间" v-if="this.auth.type == 2">
+                <el-input v-model="model.gmtCreate"></el-input>
+            </el-form-item>
+            <el-form-item label="最终修改审批时间" v-if="this.auth.type == 2">
+                <el-input v-model="model.gmtModified"></el-input>
+            </el-form-item>
             <el-form-item label="论文题目">
                 <el-input v-model="model.paperTitle" placeholder="输入论文名称"></el-input>
             </el-form-item>
@@ -35,7 +47,11 @@
                 <el-input v-model="model.teacherName" placeholder="教师名称"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" native-type="submit" @click="submit">提交</el-button>
+                <el-button type="primary" native-type="submit" @click="submit" v-if="this.auth.type == 1">提交</el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="success" native-type="submit" @click="check(2)" v-if="this.auth.type == 2">通过审批</el-button>
+                <el-button type="danger" native-type="submit" @click="check(0)" v-if="this.auth.type == 2">未通过审批</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -49,6 +65,7 @@ export default {
     data() {
         return {
             model: {},
+            auth: {},
             author_order: ["1","2","3","4","5","6"]
         }
     },
@@ -70,11 +87,23 @@ export default {
                 message: '已取消提交'
             });          
             });
+        },
 
-        }
+        async fetch(id) {
+            const res = await this.$http.get("/api/honor/detail/paper/"+id);
+            this.model = res.data;
+            this.model.gmtCreate = this.parseDate(this.model.gmtCreate);
+            this.model.gmtModified = this.parseDate(this.model.gmtModified);
+        },
+
+        async check(status) {
+            const res = await this.$http.get("/api/honor/judge/paper/"+this.id+"?status="+status)            
+            this.$router.push("/admin/approvallist");
+        },
     },
     
     created() {
+        this.getUserInfo();
         this.id && this.fetch(this.id);
     }
 }

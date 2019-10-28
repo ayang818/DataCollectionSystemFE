@@ -39,7 +39,6 @@
       </template>
     </el-table-column>
     </el-table>
-    {{model}}
     </div>
 </template>
 
@@ -75,10 +74,10 @@ export default {
                     entry.type = "发表科研论文"
                 }
                 if (entry.type === 3) {
-                    entry.type = "综合素质提升"
+                    entry.type = "申请知识产权"
                 }
                 if (entry.type === 4) {
-                    entry.type = "发表科研论文"
+                    entry.type = "综合素质提升"
                 }
             }
             this.model = res.data;
@@ -90,18 +89,17 @@ export default {
             return row.pass === value;
         },
         handleEdit(index, row) {
-            console.log(row)
             if (row.type === "学科竞赛获奖") {
-                this.$router.push();
+                this.$router.push("/honor/competition/edit/"+row.detailId);
             }
             else if (row.type === "发表科研论文") {
-                this.$router.push();
+                this.$router.push("/honor/paper/edit/"+row.detailId);
             }
             else if (row.type === "综合素质提升") {
-                this.$router.push();
+                this.$router.push("/honor/ability/edit/"+row.detailId);
             }
             else if (row.type === "申请知识产权") {
-                this.$router.push();
+                this.$router.push("/honor/knowledge/edit/"+row.detailId);
             }
         }
     },

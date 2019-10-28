@@ -26,13 +26,23 @@ const router = new Router({
       redirect: "/profile/approvallist",
       children: [
         {path: "/honor/competition", component: CompetitionEdit},
+        {path: "/honor/competition/edit/:id", component: CompetitionEdit, props: true},
+
         {path: "/honor/paper", component: PaperEdit},
+        {path: "/honor/paper/edit/:id", component: PaperEdit, props: true},
+
         {path: "/honor/knowledge", component: KnowledgeEdit},
+        {path: "/honor/knowledge/edit/:id", component: KnowledgeEdit, props: true},
+
         {path: "/honor/ability", component: AbilityEdit},
+        {path: "/honor/ability/edit/:id", component: AbilityEdit, props: true},
+
         {path: "/honor/graduation", component: GraduationEdit},
+
         {path: "/profile/edit", component: ProfileEdit},
         {path: "/profile/approvallist", component: ApprovalList},
         {path: "/profile/approvaledit", component: ApprovalList},
+        
         {path: "/admin/approvallist", component: AdminApprovalList},
         {path: "/admin/editdict", component: EditDict},
         {path: "/admin/importexcel", component: ImportExcel}
