@@ -44,7 +44,10 @@ const router = new Router({
         {path: "/profile/approvaledit", component: ApprovalList},
         
         {path: "/admin/approvallist", component: AdminApprovalList},
+
         {path: "/admin/editdict", component: EditDict},
+        {path: "/admin/editdict/:parent", component: EditDict, props: true},
+
         {path: "/admin/importexcel", component: ImportExcel}
       ] 
     },    
