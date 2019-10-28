@@ -33,7 +33,7 @@ const router = new Router({
 
         {path: "/honor/knowledge", component: KnowledgeEdit},
         {path: "/honor/knowledge/edit/:id", component: KnowledgeEdit, props: true},
-
+      
         {path: "/honor/ability", component: AbilityEdit},
         {path: "/honor/ability/edit/:id", component: AbilityEdit, props: true},
 

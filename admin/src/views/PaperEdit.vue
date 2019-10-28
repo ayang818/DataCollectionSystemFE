@@ -47,7 +47,7 @@
                 <el-input v-model="model.teacherName" placeholder="教师名称"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" native-type="submit" @click="submit" v-if="this.auth.type == 1">提交</el-button>
+                <el-button type="primary" native-type="submit" @click="submit" v-if="this.auth.type == 1 && this.model.pass != 2">提交</el-button>
             </el-form-item>
             <el-form-item>
                 <el-button type="success" native-type="submit" @click="check(2)" v-if="this.auth.type == 2">通过审批</el-button>

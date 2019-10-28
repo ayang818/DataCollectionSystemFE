@@ -30,6 +30,9 @@
         <el-button
           size="mini"
           @click="edit(scope.$index, scope.row)" v-if="scope.row.pass != '审核通过'">编辑</el-button>
+        <el-button
+        size="mini"
+        @click="viewSource(scope.$index, scope.row)" v-if="scope.row.pass == '审核通过'">查看详情</el-button>
       </template>
     </el-table-column>
     </el-table>
@@ -93,6 +96,20 @@ export default {
          filterStatus(value, row) {
             return row.pass === value;
         },
+        viewSource(index, row) {
+            if (row.type === "学科竞赛获奖") {
+                this.$router.push("/honor/competition/edit/"+row.detailId);
+            }
+            else if (row.type === "发表科研论文") {
+                this.$router.push("/honor/paper/edit/"+row.detailId);
+            }
+            else if (row.type === "综合素质提升") {
+                this.$router.push("/honor/ability/edit/"+row.detailId);
+            }
+            else if (row.type === "申请知识产权") {
+                this.$router.push("/honor/knowledge/edit/"+row.detailId);
+            }
+        }
     },
     created() {
         this.fetchList()
