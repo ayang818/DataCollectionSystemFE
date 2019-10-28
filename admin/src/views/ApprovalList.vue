@@ -20,7 +20,10 @@
         </el-table-column>
         <el-table-column
             prop="pass"
-            label="审批状态">
+            label="审批状态"
+            :filters="[{text : '审核通过', value: '审核通过'},{text : '审核不通过', value: '审核不通过'},{text : '审核中', value: '审核中'}]"
+            :filter-method="filterStatus"
+            filter-placement="bottom-end">
       </el-table-column>
       <el-table-column label="操作">
       <template slot-scope="scope">
@@ -50,10 +53,10 @@ export default {
             for (let i = 0; i < data.length; i++) {
                 let entry = data[i]
                 if (entry.pass === 0) {
-                    entry.pass = "未通过审核"
+                    entry.pass = "审核不通过"
                 }
                 if (entry.pass === 1) {
-                    entry.pass = "正在审核"
+                    entry.pass = "审核中"
                 }
                 if (entry.pass === 2) {
                     entry.pass = "审核通过"
@@ -86,7 +89,10 @@ export default {
             else if (row.type === "申请知识产权") {
                 this.$router.push("/honor/knowledge/edit/"+row.detailId);
             }
-        }
+        },
+         filterStatus(value, row) {
+            return row.pass === value;
+        },
     },
     created() {
         this.fetchList()
