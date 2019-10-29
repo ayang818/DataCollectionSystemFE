@@ -10,7 +10,7 @@
             width="180">
         </el-table-column>
         <el-table-column
-            prop="name"
+            prop="title"
             label="名称"
             width="180">
         </el-table-column>
@@ -18,7 +18,7 @@
             <template slot-scope="scope">
                 <el-button
                 size="mini"
-                @click="listDescendant(scope.$index, scope.row)">编辑</el-button>
+                @click="listDescendant(scope.$index, scope.row)">进入</el-button>
                 <el-button
                 size="mini"
                 type="danger"
@@ -26,6 +26,14 @@
             </template>
         </el-table-column>
         </el-table>
+        <el-form ref="form" :model="input" label-width="140px" @@submit.native.prevent>
+            <el-form-item label="在此层级新建条目">
+                <el-input v-model="input.value"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="insertNode">立即创建</el-button>
+            </el-form-item>
+        </el-form>
     </div>
 </template>
 
@@ -36,12 +44,24 @@ export default {
     },
     data() {
         return {
-            model: [{'id' : 1}],
+            model: [],
+            input: {}
         }
     },
     methods: {
-        async fetch() {
-            
+        async fetch(parentId) {
+            const res = await this.$http.get("/api/admin/categories/query?parent="+parentId);
+            this.model = res.data;
+        },
+        async deleteNode(index, row) {
+            const id = this.parent ? this.parent : 0;
+            const res = await this.$http.get("/api/admin/categories/delete?parent="+row.id); 
+            this.fetch(id)
+        },
+        async insertNode() {
+            const id = this.parent ? this.parent : 0;
+            const res = await this.$http.get("/api/admin/categories/insert?parent="+id+"&value="+this.input.value);
+            this.fetch(id);
         },
         clearFilter() {
             this.$refs.filterTable.clearFilter();
@@ -50,15 +70,13 @@ export default {
             return row.pass === value;
         },
         listDescendant(index, row) {
-
+            this.$router.push("/admin/editdict/"+row.id);
         },
-        async deleteNode(index, row) {
-            
-        }
     },
     
     created() {
-
+        !this.parent && this.fetch(0);
+        this.parent && this.fetch(this.parent);
     }
 }
 </script>
