@@ -26,9 +26,9 @@
             </template>
         </el-table-column>
         </el-table>
-        <el-form ref="form" :model="input" label-width="140px" @@submit.native.prevent>
+        <el-form ref="form" :model="input" label-width="140px"  @submit.native.prevent>
             <el-form-item label="在此层级新建条目">
-                <el-input v-model="input.value" clearablel></el-input>
+                <el-input v-model="input.value" clearable></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="insertNode">立即创建</el-button>
