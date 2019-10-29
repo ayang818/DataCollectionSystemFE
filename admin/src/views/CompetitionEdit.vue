@@ -96,12 +96,17 @@ export default {
 
         setDisable() {
             this.type = "disabled"
+        },
+        // 这部分字段耦合度可能有点高，后续需要修改方案
+        async fetchItemData() {
+            
         }
     },
     
     created() {
         this.getUserInfo();
-        this.id && this.fetch(this.id); 
+        this.fetchItemData()
+        this.id && this.fetch(this.id);
     }
 }
 </script>
