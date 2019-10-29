@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>{{!this.parent ? "编辑数据条目" : this.parent}}</h2>
+        <h2>{{!this.parent ? "编辑数据条目" : this.parent_value}}</h2>
         <el-table
         :data="model"
         style="width: 100%">
@@ -18,7 +18,7 @@
             <template slot-scope="scope">
                 <el-button
                 size="mini"
-                @click="listDescendant(scope.$index, scope.row)">进入</el-button>
+                @click="listDescendant(scope.$index, scope.row)">进入条目</el-button>
                 <el-button
                 size="mini"
                 type="danger"
@@ -28,7 +28,7 @@
         </el-table>
         <el-form ref="form" :model="input" label-width="140px" @@submit.native.prevent>
             <el-form-item label="在此层级新建条目">
-                <el-input v-model="input.value"></el-input>
+                <el-input v-model="input.value" clearablel></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="insertNode">立即创建</el-button>
@@ -45,7 +45,8 @@ export default {
     data() {
         return {
             model: [],
-            input: {}
+            input: {},
+            parent_value: "",
         }
     },
     methods: {
@@ -72,11 +73,16 @@ export default {
         listDescendant(index, row) {
             this.$router.push("/admin/editdict/"+row.id);
         },
+        async getParentName(parentId) {
+            const res = await this.$http.get("/api/admin/categories/parentname?parent="+parentId);
+            this.parent_value = res.data;
+        }
     },
     
     created() {
         !this.parent && this.fetch(0);
         this.parent && this.fetch(this.parent);
+        this.parent && this.getParentName(this.parent);
     }
 }
 </script>
