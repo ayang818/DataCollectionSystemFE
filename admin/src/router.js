@@ -12,6 +12,7 @@ import ProfileEdit from "./views/ProfileEdit"
 import AdminApprovalList from "./views/AdminApprovalList"
 import EditDict from "./views/EditDict"
 import ImportExcel from "./views/ImportExcel"
+import UploadExcel from "./views/excel/upload-excel"
 
 Vue.use(Router)
 
@@ -48,7 +49,7 @@ const router = new Router({
         {path: "/admin/editdict", component: EditDict},
         {path: "/admin/editdict/:parent", component: EditDict, props: true},
 
-        {path: "/admin/importexcel", component: ImportExcel}
+        {path: "/admin/uploadexcel", component: UploadExcel}
       ] 
     },    
   ]

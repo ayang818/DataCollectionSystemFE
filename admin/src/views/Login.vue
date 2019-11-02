@@ -64,12 +64,12 @@ export default {
             // 得到token
             let res = "";
             if (this.model.type === "1" ) {
-              res =  await this.$http.post("/api/login/user", this.model);
+              res =  await this.$http.post("/api/user/login", this.model);
             } else if (this.model.type == "2") {
-              res = await this.$http.post("/api/login/admin", this.model);
+              res = await this.$http.post("/api/admin/login", this.model);
             }
             let code = String(res.data.code);
-            if (code.startsWith("4") || code.startsWith("5")) {
+            if (!code ||code.startsWith("4") || code.startsWith("5")) {
                 this.$message({
                   type: "error",
                   message: res.data.message,

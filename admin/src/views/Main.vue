@@ -31,7 +31,7 @@
           <el-menu-item-group>
             <el-menu-item index="/admin/approvallist">所有提交的审核</el-menu-item>
             <el-menu-item index="/admin/editdict">编辑数据条目</el-menu-item>
-            <el-menu-item index="/admin/importexcel">导入信息</el-menu-item>
+            <el-menu-item index="/admin/uploadexcel">导入excel</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
