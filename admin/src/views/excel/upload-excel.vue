@@ -18,10 +18,14 @@
           :before-remove="beforeRemove"
            multiple
           :limit="1"
-          :file-list="fileList">
+          :file-list="fileList"
+          :on-success="afterUpload">
           <el-button size="small" type="primary">点击上传</el-button>
           <div slot="tip" class="el-upload__tip"></div>
         </el-upload>
+      </el-tab-pane>
+      <el-tab-pane label="下载" name="download">
+        
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -64,6 +68,12 @@ export default {
     },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${ file.name }？`);
+    },
+    afterUpload() {
+      this.$message({
+        message: '上传成功',
+        type: 'success'
+      })
     }
   }
 }
