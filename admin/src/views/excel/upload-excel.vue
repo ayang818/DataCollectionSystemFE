@@ -25,7 +25,7 @@
         </el-upload>
       </el-tab-pane>
       <el-tab-pane label="下载" name="download">
-        
+        <span>下载excel示例</span>
       </el-tab-pane>
     </el-tabs>
   </div>
